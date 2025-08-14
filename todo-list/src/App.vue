@@ -1,5 +1,5 @@
 <template>
-  <div id="root">
+  <div id="app-container">
     <div class="todo-container">
       <div class="todo-wrap">
         <myHeader :receive="receive"/> <!-- 头部组件，通过props传递receive方法 -->
@@ -73,9 +73,36 @@ export default {
 </script>
 <style scoped>
 /*base*/
-body {
-  background: #fff;
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden; /* 可选，防止页面出现滚动条 */
 }
+
+/* 根容器样式 */
+#app-container {
+  width: 100vw; /* 使用视口宽度单位 */
+  height: 100vh; /* 使用视口高度单位 */
+  margin: 0;
+  padding: 0;
+  position: fixed; /* 固定定位确保覆盖整个视口 */
+  top: 0;
+  left: 0;
+  z-index: -1; /* 确保背景在内容下方 */
+  /* 设置背景图片 */
+  background-image: url('@/assets/background.jpg');
+  /* 图片适应容器 */
+  background-size: cover;
+  /* 图片居中显示 */
+  background-position: center;
+  /* 防止图片重复 */
+  background-repeat: no-repeat;
+  /* 固定背景不随滚动变化 */
+  background-attachment: fixed;
+}
+
  
 .btn {
   display: inline-block;
