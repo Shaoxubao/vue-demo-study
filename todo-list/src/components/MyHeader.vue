@@ -1,6 +1,10 @@
 <template>
   <div>
     <div class="todo-header">
+      <div class="header-container">
+        <h1 style="font-size: 20px;">My todos</h1>
+        <span class="current-time">{{ currentTime }}</span>
+      </div>
       <input type="text" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="add"/>
     </div>
   </div>
@@ -20,7 +24,31 @@ export default {
       this.receive(todoObj)
       event.target.value=''
       //但是这块就是在操作dom了，如果不用value的话，在input表单用v-model
+    },
+    updateTime() {
+      const now = new Date();
+      // 格式化时间为 HH:MM:SS 格式
+      this.currentTime = now.toLocaleTimeString('zh-CN', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
     }
+  },
+  data() {
+    return {
+      currentTime: ''
+    }
+  },
+  created() {
+    // 初始化时间
+    this.updateTime();
+    // 每秒更新一次时间
+    this.timer = setInterval(this.updateTime, 1000);
+  },
+  beforeUnmount() {
+    // 组件销毁时清除定时器
+    clearInterval(this.timer);
   }
 };
 </script>
@@ -41,5 +69,18 @@ export default {
   border-color: rgba(82, 168, 236, 0.8);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
     0 0 8px rgba(82, 168, 236, 0.6);
+}
+.header-container {
+  position: relative;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.current-time {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  color: #666;
 }
 </style>

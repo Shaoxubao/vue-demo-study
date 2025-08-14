@@ -114,6 +114,7 @@ body {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  background: #8aafe7;
 }
  
 </style>
