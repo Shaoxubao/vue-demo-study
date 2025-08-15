@@ -19,6 +19,16 @@ export default {
   props:['receive'],
   methods:{
     add(){
+      // 清除之前的错误提示
+      this.errorMessage = '';
+
+       // 任务名长度校验
+      if (this.taskName.trim().length > 10) {
+        this.errorMessage = '任务名不能超过10个字符';
+        alert(this.errorMessage)
+        return;
+      }
+
       //校验数据，前后不能为空
       if(!this.taskName.trim()) return alert('不能输入空信息')
       const todoObj={id:nanoid(),title:this.taskName,done:false,taskTime:this.taskTime}
@@ -42,7 +52,8 @@ export default {
     return {
       currentTime: '',
       taskName: '',
-      taskTime: ''
+      taskTime: '',
+      errorMessage: ''
     }
   },
   created() {
