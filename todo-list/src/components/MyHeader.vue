@@ -5,7 +5,8 @@
         <h1 style="font-size: 20px;">My todos</h1>
         <span class="current-time">{{ currentTime }}</span>
       </div>
-      <input type="text" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="add"/>
+      <input type="text" v-model="taskName" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="add"/>
+      <input type="datetime-local" v-model="taskTime" class="task-time"/>
     </div>
   </div>
 </template>
@@ -17,12 +18,14 @@ export default {
   name: "myHeader",
   props:['receive'],
   methods:{
-    add(event){
+    add(){
       //校验数据，前后不能为空
-      if(!event.target.value.trim()) return alert('不能输入空信息')
-      const todoObj={id:nanoid(),title:event.target.value,done:false}
+      if(!this.taskName.trim()) return alert('不能输入空信息')
+      const todoObj={id:nanoid(),title:this.taskName,done:false,taskTime:this.taskTime}
+
       this.receive(todoObj)
-      event.target.value=''
+      this.taskName = '';
+      this.taskTime = '';
       //但是这块就是在操作dom了，如果不用value的话，在input表单用v-model
     },
     updateTime() {
@@ -37,7 +40,9 @@ export default {
   },
   data() {
     return {
-      currentTime: ''
+      currentTime: '',
+      taskName: '',
+      taskTime: ''
     }
   },
   created() {

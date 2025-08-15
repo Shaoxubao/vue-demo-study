@@ -2,7 +2,7 @@
   <li>
     <label>
       <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
-      <span>{{todo.title}}</span>
+      <span>{{todo.title}}   &nbsp;&nbsp;&nbsp;&nbsp; {{todo.taskTime | formatDate}}</span>
     </label>
     <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
     <!-- 这里的click触动的方法不能再用deleteTodo了因为那是app里定义的方法你可以拿来用不能再重新声明用 -->

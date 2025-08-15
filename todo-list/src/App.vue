@@ -31,10 +31,10 @@ export default {
   data(){
     return {
       todos:[
-        {id:'001',title:'吃饭',done:true},
-        {id:'002',title:'睡觉',done:true},
-        {id:'003',title:'抽烟',done:false},
-        {id:'004',title:'喝酒',done:false},
+        {id:'001',title:'吃饭',done:true, taskTime: '2025-08-10 12:00'},
+        {id:'002',title:'睡觉',done:true, taskTime: '2025-08-10 13:00'},
+        {id:'003',title:'抽烟',done:false, taskTime: '2025-08-10 14:00'},
+        {id:'004',title:'喝酒',done:false, taskTime: '2025-08-10 16:00'},
         // 一般id都用字符串，因为数字是有尽头的
       ]
     }
