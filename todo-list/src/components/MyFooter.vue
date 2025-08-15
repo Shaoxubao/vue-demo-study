@@ -26,10 +26,10 @@ export default {
       return this.todos.reduce((pre,current)=>pre+(current.done?1:0),0)
      //最后一次调用箭头函数的返回值就作为reduce的返回值
     },
+    // isAll：计算属性，决定复选框是否应该被选中
     isAll(){
-      if(this.total==this.doneTotal&&this.doneTotal>0) return true
-      return false
-      //return this.total==this.doneTotal
+      // 当已完成任务数等于总任务数，且总任务数大于0时返回true
+      return this.total === this.doneTotal && this.doneTotal > 0;
     },
     
   },
